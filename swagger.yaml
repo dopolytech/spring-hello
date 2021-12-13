@@ -1,0 +1,14 @@
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "Hello World API"
+paths:
+  /hello:
+    get:
+      description: Returns a greeting to the user!
+      responses:
+        200:
+          description: Returns the greeting.
+          schema:
+            type: string
+            example: "Hello Polytech"

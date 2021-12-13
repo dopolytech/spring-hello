@@ -1,0 +1,34 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'org.springframework.experimental.aot' version '0.11.0'
+	id 'com.google.cloud.tools.jib' version '3.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	maven { url 'https://repo.spring.io/release' }
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// implementation "io.springfox:springfox-boot-starter:3.0.0"
+	// compile 'io.springfox:springfox-swagger-ui:3.0.0'
+	// implementation 'org.springdoc:springdoc-openapi-ui'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+bootBuildImage {
+	builder = 'paketobuildpacks/builder:tiny'
+	environment = ['BP_NATIVE_IMAGE': 'true']
+}
